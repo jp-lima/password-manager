@@ -3,13 +3,31 @@
 #include <time.h>
 #include <string.h>
 
+#define tamanho_lista 91
+
+char lista_caracteres[tamanho_lista] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+[]{}|;:,.<>/?`~";
 
 int create(){
 	printf("ola");
+	int n;
+	char senha[11] = "";
 
-	int numeroAleatorio = rand();
+		
+	for(n = 0; n < 10; n++){
+		
+	int numeroAleatorio = rand() % 91;
+	
+	senha[n] = lista_caracteres[numeroAleatorio];
 
-	printf("Numero aleatorio %d\n", numeroAleatorio);
+	}
+
+	senha[n] = '\0';
+
+
+	printf("Senha: %s\n", senha);
+	
+	
+
 
 return 0;
 }
