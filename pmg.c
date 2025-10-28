@@ -5,12 +5,15 @@
 
 #define tamanho_lista 91
 
+
+int qtd_senhas;
+int opc_selecionado;
+
 char lista_caracteres[tamanho_lista] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+[]{}|;:,.<>/?`~";
 
 int appendSenha(char password[11], char aplicativo[10]){
 	FILE *arquivo = fopen("senhas.txt", "a");
 
-	fprintf(arquivo, "===================\n");
 	fprintf(arquivo, "senha: %s\n", password);
 	fprintf(arquivo, "plataforma: %s\n", aplicativo);
 	
@@ -21,7 +24,7 @@ int appendSenha(char password[11], char aplicativo[10]){
 
 int readFile(){
 
-	int qtd_senhas;
+
 	char linha[100];
 	char senha[100];
 
@@ -32,13 +35,14 @@ int readFile(){
 		
 			if(primeira_letra == 's'){
 				strcpy(senha, linha);
-			puts(linha);
 			}
 			if(primeira_letra == 'p'){
-				printf("=======");
+				qtd_senhas += 1;
+				printf("=======\n");
+				printf("[%d]", qtd_senhas);
 				puts(senha);
 				puts(linha);
-				printf("=======");
+				printf("=======\n");
 
 			}
 		}
@@ -49,13 +53,13 @@ int readFile(){
 
 }
 
-
-int list(){
-	FILE *arquivo = fopen("senhas.txt", "r");
-
-
-	fclose(arquivo);
+int delete(){
+	printf("Selecione pelo número a senha que deseja apagar:\n");
+	readFile();
 	
+	scanf("Qual você deseja excluir ? ");
+
+
 	return 0;
 }
 
@@ -95,6 +99,10 @@ int main(int argc, char *argv[]){
 			create();
 		}else if(strcmp(argv[1], "list") == 0){
 			readFile();
+		}else if(strcmp(argv[1],"delete") == 0){
+			
+			delete();
+
 		}
 	} 
 	else{
